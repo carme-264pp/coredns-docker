@@ -1,0 +1,16 @@
+---
+services:
+  coredns:
+    build: .
+    container_name: coredns
+    restart: always
+    ports:
+      - 53:53/udp
+      - 53:53/tcp
+    volumes:
+      - ./config:/etc/coredns:ro
+    networks:
+      - coredns_net
+
+networks:
+  coredns_net:
