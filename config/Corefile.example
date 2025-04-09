@@ -1,0 +1,10 @@
+. {
+    whoami
+    forward . 1.1.1.1 1.0.0.1
+    errors
+    cache {
+        success 5000
+    }
+    log . "{proto} {remote} is Request: {name} {type} {>id}"
+    reload
+}
