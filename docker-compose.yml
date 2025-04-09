@@ -11,6 +11,11 @@ services:
       - ./config:/etc/coredns:ro
     networks:
       - coredns_net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
 
 networks:
   coredns_net:
