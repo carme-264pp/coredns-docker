@@ -31,3 +31,9 @@ EXPOSE 53/udp 53/tcp
 
 ENTRYPOINT ["/opt/coredns"]
 CMD ["-conf", "/etc/coredns/Corefile"]
+
+LABEL org.opencontainers.image.version="v1.12.1"
+LABEL org.opencontainers.image.revision="20250501-01"
+LABEL org.opencontainers.image.source=https://github.com/carme-264pp/coredns-docker
+LABEL org.opencontainers.image.description="coredns-docker"
+LABEL org.opencontainers.image.licenses=MIT
