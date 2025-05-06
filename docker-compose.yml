@@ -4,8 +4,8 @@ services:
     build:
       context: .
       tags:
-        - "latest"
-        - "v1.12.1"
+        - "coredns-docker:latest"
+        - "coredns-docker:v1.12.1"
     image: ghcr.io/carme-264pp/coredns-docker:latest
     restart: always
     ports:
