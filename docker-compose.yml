@@ -1,7 +1,11 @@
 ---
 services:
   coredns:
-    build: .
+    build:
+      context: .
+      platforms:
+        - "linux/arm64"
+        - "linux/amd64"
     image: ghcr.io/carme-264pp/coredns-docker:latest
     restart: always
     ports:
