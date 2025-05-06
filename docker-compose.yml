@@ -6,6 +6,9 @@ services:
       platforms:
         - "linux/arm64"
         - "linux/amd64"
+      tags:
+        - "latest"
+        - "v1.12.1"
     image: ghcr.io/carme-264pp/coredns-docker:latest
     restart: always
     ports:
