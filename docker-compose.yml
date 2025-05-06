@@ -3,9 +3,6 @@ services:
   coredns:
     build:
       context: .
-      platforms:
-        - "linux/arm64"
-        - "linux/amd64"
       tags:
         - "latest"
         - "v1.12.1"
