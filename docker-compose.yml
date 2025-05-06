@@ -2,7 +2,7 @@
 services:
   coredns:
     build: .
-    container_name: coredns
+    image: ghcr.io/carme-264pp/coredns-docker:latest
     restart: always
     ports:
       - 53:53/udp

@@ -2,10 +2,10 @@
 
 ## How to use
 
-1. build
+1. pull
 
    ```shell
-   docker compose build
+   docker compose pull
    ```
 
 2. configure coredns
