@@ -5,7 +5,7 @@ services:
       context: .
       tags:
         - "coredns-docker:latest"
-        - "coredns-docker:v1.12.1"
+        - "coredns-docker:v1.12.3"
     image: ghcr.io/carme-264pp/coredns-docker:latest
     restart: always
     ports:

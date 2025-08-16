@@ -2,7 +2,7 @@
 # Build and run CoreDNS in a distroless container
 FROM golang:1.24-bookworm AS builder
 
-ARG COREDNS_VERSION=v1.12.1
+ARG COREDNS_VERSION=v1.12.3
 
 RUN \
     --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
@@ -32,8 +32,8 @@ EXPOSE 53/udp 53/tcp
 ENTRYPOINT ["/opt/coredns"]
 CMD ["-conf", "/etc/coredns/Corefile"]
 
-LABEL org.opencontainers.image.version="v1.12.1" \
-    org.opencontainers.image.revision="20250506-01" \
+LABEL org.opencontainers.image.version="v1.12.3" \
+    org.opencontainers.image.revision="20250816-01" \
     org.opencontainers.image.source=https://github.com/carme-264pp/coredns-docker \
     org.opencontainers.image.description="coredns-docker" \
     org.opencontainers.image.licenses=MIT
