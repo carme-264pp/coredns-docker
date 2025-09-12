@@ -1,8 +1,11 @@
 # syntax=docker/dockerfile:1
 # Build and run CoreDNS in a distroless container
-FROM golang:1.24-bookworm AS builder
+ARG BUILDER_IMAGE=golang:1.24-bookworm
+ARG BASE_IMAGE=gcr.io/distroless/static-debian12:nonroot
 
-ARG COREDNS_VERSION=v1.12.3
+FROM ${BUILDER_IMAGE} AS builder
+
+ARG COREDNS_VERSION
 
 RUN \
     --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
@@ -18,7 +21,10 @@ RUN \
     cd coredns && \
     GOFLAGS="-buildvcs=false" make && ls
 
-FROM gcr.io/distroless/static-debian12:nonroot
+FROM ${BASE_IMAGE}
+
+ARG COREDNS_VERSION
+ARG BUILD_REVISION
 
 USER nonroot:nonroot
 
@@ -32,8 +38,8 @@ EXPOSE 53/udp 53/tcp
 ENTRYPOINT ["/opt/coredns"]
 CMD ["-conf", "/etc/coredns/Corefile"]
 
-LABEL org.opencontainers.image.version="v1.12.3" \
-    org.opencontainers.image.revision="20250816-01" \
+LABEL org.opencontainers.image.version=${COREDNS_VERSION}-${BUILD_REVISION} \
+    org.opencontainers.image.revision=${BUILD_REVISION} \
     org.opencontainers.image.source=https://github.com/carme-264pp/coredns-docker \
     org.opencontainers.image.description="coredns-docker" \
     org.opencontainers.image.licenses=MIT

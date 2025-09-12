@@ -3,9 +3,16 @@ services:
   coredns:
     build:
       context: .
+      args:
+        COREDNS_VERSION: ${COREDNS_VERSION}
+        BUILD_REVISION: ${BUILD_REVISION}
+        BASE_IMAGE: ${BASE_IMAGE}
+        BUILDER_IMAGE: ${BUILDER_IMAGE}       
       tags:
-        - "coredns-docker:latest"
-        - "coredns-docker:v1.12.3"
+        - "${COREDNS_TAG_NAME}:latest"
+        - "${COREDNS_TAG_NAME}:${COREDNS_VERSION}-${BUILD_REVISION}"
+        - "ghcr.io/carme-264pp/${COREDNS_TAG_NAME}:latest"
+        - "ghcr.io/carme-264pp/${COREDNS_TAG_NAME}:${COREDNS_VERSION}-${BUILD_REVISION}"
     image: ghcr.io/carme-264pp/coredns-docker:latest
     restart: always
     ports:
