@@ -9,8 +9,6 @@ services:
         BASE_IMAGE: ${BASE_IMAGE}
         BUILDER_IMAGE: ${BUILDER_IMAGE}       
       tags:
-        - "${COREDNS_TAG_NAME}:latest"
-        - "${COREDNS_TAG_NAME}:${COREDNS_VERSION}-${BUILD_REVISION}"
         - "ghcr.io/carme-264pp/${COREDNS_TAG_NAME}:latest"
         - "ghcr.io/carme-264pp/${COREDNS_TAG_NAME}:${COREDNS_VERSION}-${BUILD_REVISION}"
     image: ghcr.io/carme-264pp/coredns-docker:latest
