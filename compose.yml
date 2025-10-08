@@ -7,7 +7,7 @@ services:
         COREDNS_VERSION: ${COREDNS_VERSION}
         BUILD_REVISION: ${BUILD_REVISION}
         BASE_IMAGE: ${BASE_IMAGE}
-        BUILDER_IMAGE: ${BUILDER_IMAGE}       
+        BUILDER_IMAGE: ${BUILDER_IMAGE}
       tags:
         - "ghcr.io/carme-264pp/${COREDNS_TAG_NAME}:latest"
         - "ghcr.io/carme-264pp/${COREDNS_TAG_NAME}:${COREDNS_VERSION}-${BUILD_REVISION}"
@@ -23,7 +23,7 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "20m"
+        max-size: "5m"
         max-file: "5"
 
 networks:
