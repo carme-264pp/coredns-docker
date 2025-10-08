@@ -7,19 +7,23 @@ FROM ${BUILDER_IMAGE} AS builder
 
 ARG COREDNS_VERSION
 
+WORKDIR /build
+
+COPY plugin.cfg* /build/
+
 RUN \
     --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
     --mount=type=cache,target=/var/cache/apt/archives,sharing=locked \
     apt update && apt install -y --no-install-recommends \
-    ca-certificates libcap2-bin
+    ca-certificates
 
-WORKDIR /build
 RUN \
     --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     git clone -b ${COREDNS_VERSION} --depth=1 https://github.com/coredns/coredns.git && \
     cd coredns && \
-    GOFLAGS="-buildvcs=false" make && ls
+    if [ -f "/build/plugin.cfg" ]; then cp /build/plugin.cfg ./plugin.cfg ; fi && \
+    GOFLAGS="-buildvcs=false" make
 
 FROM ${BASE_IMAGE}
 
