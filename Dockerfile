@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 # Build and run CoreDNS in a distroless container
-ARG BUILDER_IMAGE=golang:1.24-bookworm
-ARG BASE_IMAGE=gcr.io/distroless/static-debian12:nonroot
+ARG BUILDER_IMAGE=golang:1.25-trixie
+ARG BASE_IMAGE=gcr.io/distroless/static-debian13:nonroot
 
 FROM ${BUILDER_IMAGE} AS builder
 
